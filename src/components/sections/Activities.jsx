@@ -1,3 +1,5 @@
+import React from 'react';
+import { motion } from 'framer-motion';
 import ap1 from '../../assets/images/ap1.jpg';
 import ap2 from '../../assets/images/ap2.jpg';
 import ap3 from '../../assets/images/ap3.jpg';
@@ -40,28 +42,73 @@ function BlogSection() {
   ];
 
   return (
-    <section id="blog" className="py-16 bg-white">
-      <div className="container mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">Meteor Mind Latest News~!!</h1>
+    <section id="blog" className="py-16 bg-[#0a1526] text-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-14">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+            Meteor Mind Latest News
+          </h2>
+          <div className="h-1 w-28 bg-[#3b82f6] mx-auto rounded-full"></div>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {blogPosts.map(post => (
-            <div key={post.id} className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105 border border-gray-200">
-              <img src={post.img} alt={post.title} className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-primary">{post.title}</h3>
-                <p className="text-gray-500 text-sm mb-2">{post.date}</p>
-                <p className="text-gray-700 mb-4">{post.content}</p>
-                <a 
-                  href={post.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block w-full text-center bg-primary hover:bg-opacity-80 text-white font-bold py-2 rounded transition-colors"
-                >
-                  Launch!
-                </a>
+          {blogPosts.map((post) => (
+            <motion.div
+              key={post.id}
+              className="relative rounded-lg overflow-hidden h-full"
+              whileHover={{ 
+                y: -5,
+                transition: { type: "spring", stiffness: 300, damping: 15 }
+              }}
+            >
+              {/* Specific #3b82f6 blue border */}
+              <div className="absolute inset-0 p-[2px] rounded-lg">
+                <div className="absolute inset-0 rounded-lg bg-[#3b82f6] opacity-70 animate-pulse"></div>
               </div>
-            </div>
+              
+              {/* Card Content */}
+              <div className="relative bg-[#0d1c30] h-full rounded-lg flex flex-col overflow-hidden z-10">
+                {/* Image with cosmic-themed overlay */}
+                <div className="relative">
+                  <img 
+                    src={post.img} 
+                    alt={post.title} 
+                    className="w-full h-48 object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a1526] to-transparent opacity-70"></div>
+                  
+                  {/* Date badge with #3b82f6 accent */}
+                  <div className="absolute top-3 right-3 bg-[#0a1526] text-white text-xs px-3 py-1 rounded-md border-l-2 border-[#3b82f6]">
+                    {post.date}
+                  </div>
+                </div>
+                
+                <div className="p-5 flex flex-col flex-grow">
+                  {/* Title */}
+                  <h3 className="text-xl font-bold mb-3 text-white">
+                    {post.title}
+                  </h3>
+                  
+                  {/* Content */}
+                  <p className="text-gray-300 mb-5 text-sm flex-grow">
+                    {post.content}
+                  </p>
+                  
+                  {/* Button with NO hover effect */}
+                  <a 
+                    href={post.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block text-center bg-transparent border border-[#3b82f6] text-white py-2 rounded-md"
+                  >
+                    Launch
+                  </a>
+                </div>
+                
+                {/* Bottom accent line */}
+                <div className="h-1 w-full bg-[#3b82f6]"></div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

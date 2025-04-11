@@ -7,10 +7,6 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState("/");
   
-  // Current user info
-  const currentTime = "2025-04-08 07:53:50";
-  const currentUser = "Abhinavpreet-Singh";
-  
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -53,10 +49,10 @@ function Navbar() {
   // Navigation links
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "#blog", label: "Blog" },
-    { href: "/topics", label: "Quizzes" },
     { href: "#stats", label: "Stats" },
-    { href: "/about", label: "About Us" }
+    { href: "#blog", label: "Blogs" },
+    { href: "#queries", label: "Queries" },
+    // { href: "/about", label: "About Us" }
   ];
   
   // Get greeting based on time
