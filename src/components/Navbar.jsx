@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo2.jpg';
 
 function Navbar() {
@@ -54,14 +55,6 @@ function Navbar() {
     { href: "#queries", label: "Queries" },
     // { href: "/about", label: "About Us" }
   ];
-  
-  // Get greeting based on time
-  const getGreeting = () => {
-    const hours = parseInt(currentTime.split(' ')[1].split(':')[0], 10);
-    if (hours >= 5 && hours < 12) return "Good Morning";
-    if (hours >= 12 && hours < 18) return "Good Afternoon";
-    return "Good Evening";
-  };
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 flex justify-center px-4 pt-2">
@@ -160,26 +153,28 @@ function Navbar() {
                 ))}
               </div>
               
-              {/* Join Button with Enhanced Visibility */}
-              <motion.button
+              {/* Join Button with Enhanced Visibility - Now links to signup */}
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`ml-4 px-6 py-1.5 rounded-full text-sm font-medium ${
-                  scrolled ? 'bg-white/10' : 'bg-black/40'
-                } text-white hover:bg-white/20 transition-colors relative overflow-hidden group`}
-                style={{
-                  textShadow: !scrolled ? '0 1px 2px rgba(0,0,0,0.3)' : 'none',
-                  boxShadow: !scrolled ? '0 2px 4px rgba(0,0,0,0.2)' : 'none'
-                }}
+                className="ml-4"
               >
-                <span className="relative z-10 font-semibold">Join the Cosmos</span>
-                
-                {/* Fill animation on hover */}
-                <motion.div 
-                  className="absolute bottom-0 left-0 right-0 h-0 bg-white/10 group-hover:h-full transition-all duration-300 ease-in-out"
-                  style={{ borderRadius: "9999px" }}
-                />
-              </motion.button>
+                <Link 
+                  to="/signup" 
+                  className={`px-6 py-1.5 rounded-full text-sm font-medium ${
+                    scrolled ? 'bg-white/10' : 'bg-black/40'
+                  } text-white hover:bg-white/20 transition-colors relative overflow-hidden group inline-block`}
+                  style={{
+                    textShadow: !scrolled ? '0 1px 2px rgba(0,0,0,0.3)' : 'none',
+                    boxShadow: !scrolled ? '0 2px 4px rgba(0,0,0,0.2)' : 'none'
+                  }}
+                >
+                  <span className="relative z-10 font-semibold">Join the Cosmos</span>
+                  
+                  {/* Fill animation on hover */}
+                  <div className="absolute bottom-0 left-0 right-0 h-0 bg-white/10 group-hover:h-full transition-all duration-300 ease-in-out rounded-full" />
+                </Link>
+              </motion.div>
             </div>
             
             {/* Mobile Menu Button with Enhanced Visibility */}
@@ -279,15 +274,16 @@ function Navbar() {
                     transition={{ delay: 0.3 }}
                     className="pt-2 mt-2 border-t border-white/10"
                   >
-                    <a 
-                      href="#"
+                    <Link 
+                      to="/signup"
                       className="block py-2 px-4 rounded-lg text-center font-semibold bg-white/20 text-white"
+                      onClick={() => setIsMenuOpen(false)}
                       style={{
                         textShadow: !scrolled ? '0 1px 2px rgba(0,0,0,0.3)' : 'none'
                       }}
                     >
                       Join the Cosmos
-                    </a>
+                    </Link>
                   </motion.li>
                 </ul>
               </div>
